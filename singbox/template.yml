@@ -6,18 +6,29 @@
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "https://8.8.8.8/dns-query"
+         "type": "tcp",
+        "server": "8.8.8.8"
       },
       {
         "tag": "dns-local",
-        "address": "local",
+        "type": "local",
         "detour": "direct"
+      },
+      {
+         "tag": "fakeip",
+        "type": "fakeip",
+        "inet4_range": "198.18.0.0/15",
+        "inet6_range": "fc00::/18"
       }
+      
     ],
     "rules": [
-      {
-        "outbound": "any",
-        "server": "dns-local"
+    {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "fakeip"
       },
       {
         "rule_set": "geosite-category-ir",
@@ -33,6 +44,13 @@
       "address": "172.19.0.1/30",
       "auto_route": true,
       "route_exclude_address": "192.168.0.0/16"
+    },
+        {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "::",
+      "listen_port": 10808,
+      "tcp_fast_open": true
     }
   ],
   "outbounds": [
@@ -46,7 +64,9 @@
       "type": "urltest",
       "tag": "⚡️ Auto",
       "outbounds": null,
-      "url": "https://1.1.1.1/dns-query?name=security.cloudflare-dns.com"
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "3m0s",
+      "tolerance": 50
     },
     {
       "type": "direct",
@@ -60,51 +80,81 @@
         "action": "sniff"
       },
       {
+        "inbound": "mixed-in",
+        "action": "sniff"
+      },
+      {
         "protocol": "dns",
         "action": "hijack-dns"
       },
       {
-        "rule_set": "geosite-category-ads",
-        "action": "reject",
-        "method": "default"
+        "ip_is_private": true,
+        "outbound": "direct"
+      },
+      {
+        "rule_set": [
+          "geosite-category-ads-all"
+        ],
+        "action": "reject"
       },
       {
         "rule_set": [
           "geosite-category-ir",
+          "geosite-ir",
           "geoip-ir"
         ],
+        "outbound": "direct"
+      },
+      {
+        "domain_suffix": ".ir",
         "outbound": "direct"
       }
     ],
     "rule_set": [
       {
         "type": "remote",
-        "tag": "geosite-category-ads",
+        "tag": "geosite-category-ads-all",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ads.srs",
-        "download_detour": "direct"
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-category-ads-all.srs",
+        "download_detour": "direct",
+        "update_interval": "72h0m0s"
       },
       {
         "type": "remote",
         "tag": "geosite-category-ir",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ir.srs",
-        "download_detour": "direct"
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-category-ir.srs",
+        "download_detour": "direct",
+        "update_interval": "72h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-ir",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
+        "download_detour": "direct",
+        "update_interval": "72h0m0s"
       },
       {
         "type": "remote",
         "tag": "geoip-ir",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-ir.srs",
-        "download_detour": "direct"
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
+        "download_detour": "direct",
+        "update_interval": "72h0m0s"
       }
     ],
-    "auto_detect_interface": true
+    "final": "proxy",
+    "auto_detect_interface": true,
+    "override_android_vpn": true,
+    "default_domain_resolver": "dns-remote"
   },
   "experimental": {
     "cache_file": {
       "enabled": true,
+      "store_fakeip": true,
       "store_rdrc": true
     }
   }
 }
+       
