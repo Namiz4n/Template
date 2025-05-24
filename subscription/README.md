@@ -58,6 +58,7 @@ marzban restart
 - ( [MarzViteTemplate](https://github.com/MatinDehghanian/MarzViteTemplate)
 -  [Ourenus](https://github.com/MatinDehghanian/Ourenus))
    
-
+-  [CNsubscribiton](https://github.com/MatinDehghanian/CNsubscribtion))
+   
 
 
