@@ -51,7 +51,7 @@ echo 'V2RAY_SUBSCRIPTION_TEMPLATE="v2ray/template.yml"' | sudo tee -a /opt/marzb
 echo 'CLASH_SUBSCRIPTION_TEMPLATE="clash/template.yml"' | sudo tee -a /opt/marzban/.env
 ```
 
-Or add the following values to the .env file in the /opt/marzban directory
+Or add the following values to the `.env` file in the `/opt/marzban` directory
 ```
 CUSTOM_TEMPLATES_DIRECTORY="/var/lib/marzban/templates/"
 SUBSCRIPTION_PAGE_TEMPLATE="subscription/index.html"
