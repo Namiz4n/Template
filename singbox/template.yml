@@ -88,6 +88,10 @@
   ],
   "route": {
     "rules": [
+    {
+  "inbound": "tun-in",
+  "action": "sniff"
+},
 
       {
         "inbound": "mixed-in",
