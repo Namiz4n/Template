@@ -60,5 +60,5 @@ marzban restart
    
 -  [CNsubscribiton](https://github.com/MatinDehghanian/CNsubscribtion))
    
-
+-  [LightWaySub](https://github.com/MatinDehghanian/LightWaySub))
 
