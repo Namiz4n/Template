@@ -37,19 +37,19 @@ And more.
 # Installation Steps
 1. Download the template file.
 ```sh
-sudo wget -N -P /var/lib/marzban/templates/singbox/ https://raw.githubusercontent.com/Namiz4n/Template/master/singbox/template.yml
+sudo wget -N -P /var/lib/marzban/templates/singbox/ https://raw.githubusercontent.com/Namiz4n/Template/master/singbox/default.yml
 ```
 2. Run the following commands in your server terminal:
 ```sh
 echo 'CUSTOM_TEMPLATES_DIRECTORY="/var/lib/marzban/templates/"' | sudo tee -a /opt/marzban/.env
-echo 'SINGBOX_SUBSCRIPTION_TEMPLATE="singbox/template.yml"' | sudo tee -a /opt/marzban/.env
+echo 'SINGBOX_SUBSCRIPTION_TEMPLATE="singbox/default.yml"' | sudo tee -a /opt/marzban/.env
 ```
 Alternatively, add the following values to the .env file located in the /opt/marzban directory:
 ```sh
 sudo nano /opt/marzban/.env
 ```
 ```sh
-SINGBOX_SUBSCRIPTION_TEMPLATE="singbox/template.yml"
+SINGBOX_SUBSCRIPTION_TEMPLATE="singbox/default.yml"
 SINGBOX_SETTINGS_TEMPLATE="singbox/settings.json"
 ```
 
