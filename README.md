@@ -26,7 +26,7 @@ A list of customized templates for Marzban
 - [Subscription Page](https://github.com/Namiz4n/Template/tree/master/subscription)
 - [Template for v2ray](https://github.com/Namiz4n/Template/tree/master/Xray)
 - [Template for sing-box](https://github.com/Namiz4n/Template/tree/master/Singbox)
-- [Template for Clash](https://github.com/Namiz4n/Template/tree/master/Clash)
+- [Template for Clash](https://github.com/Namiz4n/Template/tree/main/clash)
 
 # Installation Steps
 To install each template, refer to its respective page
